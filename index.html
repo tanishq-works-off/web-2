@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RudraKashi | Authentic Rudraksha</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --saffron: #D97706;
+  --maroon: #5B1A18;
+  --cream: #FDF6E3;
+  --gold: #C9A227;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family:'Poppins', sans-serif;
+  background:var(--cream);
+  color:#333;
+}
+
+/* NAV */
+nav {
+  display:flex;
+  justify-content:space-between;
+  padding:20px 8%;
+  position:fixed;
+  width:100%;
+  background:rgba(0,0,0,0.6);
+  color:white;
+  z-index:1000;
+}
+
+nav h1 { font-family:'Cinzel'; color:var(--gold); }
+nav a { color:white; margin-left:20px; text-decoration:none; }
+
+/* HERO */
+.hero {
+  height:100vh;
+  background:linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)),
+  url('https://images.unsplash.com/photo-1583391733956-6c78276477e2');
+  background-size:cover;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:white;
+  padding:20px;
+}
+
+.hero h1 { font-size:48px; margin-bottom:20px; }
+
+.btn {
+  padding:12px 25px;
+  margin:10px;
+  border:none;
+  cursor:pointer;
+}
+
+.btn-primary {
+  background:var(--saffron);
+  color:white;
+}
+
+/* SECTION */
+section {
+  padding:80px 8%;
+  text-align:center;
+}
+
+h2 {
+  font-family:'Cinzel';
+  margin-bottom:40px;
+}
+
+/* PRODUCTS */
+.products {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
+}
+
+.card {
+  background:white;
+  padding:20px;
+  border-radius:10px;
+}
+
+.card img {
+  width:100%;
+  border-radius:8px;
+}
+
+.price {
+  color:var(--maroon);
+  font-weight:bold;
+}
+
+/* FORM */
+form {
+  max-width:500px;
+  margin:auto;
+  text-align:left;
+}
+
+form input, form textarea, form select {
+  width:100%;
+  padding:10px;
+  margin-top:8px;
+  margin-bottom:15px;
+  border:1px solid #ccc;
+  border-radius:5px;
+}
+
+form button {
+  width:100%;
+}
+
+/* FOOTER */
+footer {
+  background:#111;
+  color:white;
+  padding:40px;
+  text-align:center;
+}
+
+/* WHATSAPP */
+.whatsapp {
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  padding:15px;
+  border-radius:50%;
+  color:white;
+  text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+  <h1>RudraKashi</h1>
+  <div>
+    <a href="#">Home</a>
+    <a href="#products">Products</a>
+    <a href="#order">Order</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <h1>Authentic Rudraksha from Varanasi</h1>
+    <p>Direct from source at wholesale prices</p>
+    <button class="btn btn-primary" onclick="scrollToOrder()">Order Now</button>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <h2>Our Collection</h2>
+  <div class="products">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1616627459760-7b55d3c88a3e">
+      <h3>5 Mukhi Rudraksha</h3>
+      <p class="price">₹499</p>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1616627984110-3fdcb87c4f52">
+      <h3>7 Mukhi Rudraksha</h3>
+      <p class="price">₹899</p>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER FORM -->
+<section id="order">
+  <h2>Place Your Order</h2>
+
+  <form id="order-form" action="https://formspree.io/f/xbdpjbjd" method="POST">
+
+    <label>Name</label>
+    <input type="text" name="name" required>
+
+    <label>Phone</label>
+    <input type="tel" name="phone" required>
+
+    <label>Email</label>
+    <input type="email" name="email">
+
+    <label>Select Product</label>
+    <select name="product" required>
+      <option value="">Select Product</option>
+      <option>5 Mukhi Rudraksha - ₹499</option>
+      <option>7 Mukhi Rudraksha - ₹899</option>
+    </select>
+
+    <label>Address</label>
+    <textarea name="address" required></textarea>
+
+    <label>Message (Optional)</label>
+    <textarea name="message"></textarea>
+
+    <button type="submit" class="btn btn-primary">Submit Order</button>
+
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>RudraKashi | Varanasi, India</p>
+</footer>
+
+<a href="#" class="whatsapp">💬</a>
+
+<!-- SCRIPT -->
+<script>
+function scrollToOrder() {
+  document.getElementById("order").scrollIntoView({ behavior: "smooth" });
+}
+
+const form = document.getElementById("order-form");
+
+form.addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const data = new FormData(form);
+
+  const response = await fetch(form.action, {
+    method: form.method,
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  });
+
+  if (response.ok) {
+    alert("✅ Order submitted successfully!");
+    form.reset();
+  } else {
+    alert("❌ Something went wrong. Please try again.");
+  }
+});
+</script>
+
+</body>
+</html>
